@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SmartCam - New User</title>
+</head>
+<body>
+    <h1>Novo Usuario</h1>
+    <form action="/createUser"  enctype="multipart/form-data" method = "POST">
+        <div class="form-group">
+            <label>Nome</label>
+            <input type = "text" name = "nome" />
+            <br/>
+            <label>Data de Nascimento</label>
+            <input type = "date" name = "dataNascimento" />
+        </div>
+        <div>
+            <br/>
+            <button type="submit">Create User!</button>
+        </div>
+    </form>
+</body>
+</html>
