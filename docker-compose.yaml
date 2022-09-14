@@ -8,6 +8,6 @@ services:
     - MONGO_INITDB_ROOT_USERNAME=henriquegf12
     - MONGO_INITDB_ROOT_PASSWORD=jgs3er4b
     volumes:
-    - /home/smartcamDB/:/data/db
+    - /home/repositorios/SmartCam/db:/data/db
     ports:
     - 27017:27017
