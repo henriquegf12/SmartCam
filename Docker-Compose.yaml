@@ -3,14 +3,12 @@ services:
   # Run the database
   db:
     image: mongo
-    container_name: smartcamDB
+    container_name: smartcamdb
     environment:
     - MONGO_INITDB_ROOT_USERNAME=henriquegf12
     - MONGO_INITDB_ROOT_PASSWORD=jgs3er4b
     volumes:
     - /home/smartcamDB:/data/db
-    networks:
-    - mongodb_network
     ports:
     - 27017:27017
     restart: unless-stopped
