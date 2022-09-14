@@ -11,4 +11,3 @@ services:
     - /home/smartcamDB:/data/db
     ports:
     - 27017:27017
-    restart: unless-stopped
