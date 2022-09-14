@@ -2,7 +2,7 @@ version: '3.8'
 services:
   # Run the database
   db:
-    image: arm64v8/mongo
+    image: mongo:bionic
     container_name: smartcamdb
     environment:
     - MONGO_INITDB_ROOT_USERNAME=henriquegf12
