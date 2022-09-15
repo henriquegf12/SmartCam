@@ -11,3 +11,16 @@ services:
     - /home/repositorios/SmartCam/db:/data/db
     ports:
     - 27017:27017
+  camera:
+    image: henriquegf12/identify_raspberry_cam
+    container_name: camera
+    environment:
+    - LD_LIBRARY_PATH=/opt/vc/lib
+    ports:
+    - 5000:5000
+    devices:
+    - /dev/vhci:/dev/vhci
+    - /dev/video0:/dev/video0
+    - /dev/video1:/dev/video1
+    volumes:
+    - /opt/vc:/opt/vc
