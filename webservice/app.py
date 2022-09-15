@@ -4,6 +4,14 @@ from usuario import Usuario
 
 app = Flask(__name__)
 
+@app.route('/getUser/',methods=['GET'] )
+def getUser():
+     return render_template('manutencaoUsuario.html',visibilityInfoUser="hidden")
+
+@app.route('/getUser/',methods=['POST'] )
+def postGetUser():
+     return render_template('manutencaoUsuario.html',visibilityInfoUser="show")
+
 @app.route('/getUserbyID/',methods=['GET'] )
 def getUserbyID():
      return render_template('getUserbyID.html')

@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import json
 
-client = MongoClient('localhost', 27017)
+client = MongoClient("mongodb://henriquegf12:jgs3er4b@192.168.15.38:27017")
 
 
 class Usuario():      
@@ -21,8 +21,7 @@ class Usuario():
 
     def createUser(nome,dataNascimento):
         db = client.SmartCam
-        users = db.User
-
+        users = db.users
         id = 0
         if users.count_documents == 0 :
             id = 0
