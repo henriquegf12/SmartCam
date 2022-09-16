@@ -12,7 +12,7 @@ services:
     ports:
     - 27017:27017
   camera:
-    image: henriquegf12/identify_raspberry_cam
+    image: henriquegf12/smartcam
     container_name: camera
     environment:
     - LD_LIBRARY_PATH=/opt/vc/lib
@@ -24,3 +24,4 @@ services:
     - /dev/video1:/dev/video1
     volumes:
     - /opt/vc:/opt/vc
+    - /home/smartcamARQ:/home/smartcamARQ
