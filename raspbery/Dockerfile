@@ -1,7 +1,7 @@
-FROM henriquegf12/identify_raspberry_cam:latest
-WORKDIR /home
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-EXPOSE 5000
+FROM balenalib/raspberrypi4-64-debian-python:latest
+WORKDIR /usr/src/app
+RUN pip install --upgrade pip
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 CMD ["python", "main.py"]
