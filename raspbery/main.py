@@ -1,4 +1,5 @@
-
+#!/usr/local/bin/python
+# -*- coding: UTF-8 -*-
 from pymongo import MongoClient
 from datetime import datetime
 import cv2
@@ -20,7 +21,7 @@ def criaClassificadoresOpenCV(pathHaarcascadeFrontalFace,pathClassificador):
         classificadorFaces = cv2.CascadeClassifier(pathHaarcascadeFrontalFace)
         identificadorFaces = cv2.face.EigenFaceRecognizer_create()
         identificadorFaces.read(pathClassificador)
-        escreveLogDB("INI","Classificadores do OpenCV setados OK [5/QTD_VERI]",db)
+        escreveLogDB("INI","Classificadores do OpenCV setados OK [5//6]",db)
         return True, classificadorFaces,identificadorFaces
     except:
         escreveLogDB("ERROR","Erro na criação dos classificadores OpenCV",db)
@@ -29,14 +30,14 @@ def criaClassificadoresOpenCV(pathHaarcascadeFrontalFace,pathClassificador):
 
 def verificaArquivosOPENCV(pathClassificador,pathHaarcascadeFrontalFace):
     if(os.path.exists(pathClassificador) and os.path.exists(pathHaarcascadeFrontalFace)):
-        escreveLogDB("INI","Arquivos OpenCV OK [3/QTD_VERI]",db)
+        escreveLogDB("INI","Arquivos OpenCV OK [3//6]",db)
         return True
     else:
         escreveLogDB("ERROR","Não encontrado arquivos OpenCV",db)
         return False
 def verificaPastaArquivosFotos(pathArquivosFotos):
     if(os.path.exists(pathArquivosFotos)):
-        escreveLogDB("INI","Pasta Arquivos Fotos OK [4/QTD_VERI]",db)
+        escreveLogDB("INI","Pasta Arquivos Fotos OK [4//6]",db)
         return True
     else:
         escreveLogDB("ERROR","Não encontrado pasta arquivos Fotos",db)
@@ -45,8 +46,8 @@ def verificaPastaArquivosFotos(pathArquivosFotos):
 def verificaConexaoBD():
     try:
         db = client.SmartCam
-        escreveLogDB("INI","Inicialização do Sistema [0/QTD_VERI]",db)
-        escreveLogDB("INI","Conexão BD OK [1/QTD_VERI]",db)
+        escreveLogDB("INI","Inicialização do Sistema [0//6]",db)
+        escreveLogDB("INI","Conexão BD OK [1//6]",db)
         return True, db
     except:
         print("An exception occurred") 
@@ -57,7 +58,7 @@ def instanciaCamera(endereCamera):
         camera = cv2.VideoCapture(endereCamera)
         success, frame = camera.read()
         if(success):
-            escreveLogDB("INI","Camera Funcionando [6/QTD_VERI]",db)
+            escreveLogDB("INI","Camera Funcionando [6//6]",db)
             return True, camera
         else:
             escreveLogDB("ERROR","Camera não Funcionando",db)
@@ -76,7 +77,7 @@ def buscaConfigs(idConfig):
         and config['pathHaarcascadeFrontalFace']!= '' 
         and config['enderecoCamera']!= ''
         and config['pathArquivosFotos'] != '' ):
-            escreveLogDB("INI","Documento Config OK [2/QTD_VERI]",db)
+            escreveLogDB("INI","Documento Config OK [2//6]",db)
             return True, config
         else:
             escreveLogDB("ERROR","Documento Config com erro",db)
