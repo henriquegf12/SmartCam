@@ -16,8 +16,6 @@ services:
     container_name: camera
     environment:
     - LD_LIBRARY_PATH=/opt/vc/lib
-    ports:
-    - 5000:5000
     devices:
     - /dev/vhci:/dev/vhci
     - /dev/video0:/dev/video0
