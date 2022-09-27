@@ -1,12 +1,13 @@
 #!/usr/local/bin/python
 # -*- coding: UTF-8 -*-
+from time import time
 from pymongo import MongoClient
 from datetime import datetime
 import cv2
 import os
-
+import time
 id= 1
-client = MongoClient("mongodb://henriquegf12:jgs3er4b@192.168.15.38:27017")
+client = MongoClient("mongodb://henriquegf12:jgs3er4b@192.168.15.10:27017")
 
 
 def escreveLogDB(tipo,desc,db):
@@ -62,6 +63,7 @@ def instanciaCamera(endereCamera):
             return True, camera
         else:
             escreveLogDB("ERROR","Camera não Funcionando",db)
+            escreveLogDB("ERROR","Camera não Funcionando -endereco = "+endereCamera+ " sucess = "+ str(success)+" frame = "+str(frame),db)
             return False, ""
     except:
         escreveLogDB("ERROR","Camera não instanciada",db)
@@ -88,16 +90,28 @@ def buscaConfigs(idConfig):
 
          
 if __name__ == "__main__":
+    print("Comecou")
     statusConexaoBD, db = verificaConexaoBD()
+    print(statusConexaoBD)
     if(statusConexaoBD):
         statusConfig, config = buscaConfigs(id)
+        print(statusConfig)
         if(statusConfig):
             systemON = config['sistemaLigado'] 
             pathClassificador = config['pathClassificador']
             pathHaarcascadeFrontalFace = config['pathHaarcascadeFrontalFace']
             enderecoCamera = config['enderecoCamera']
             pathArquivosFotos = config['pathArquivosFotos']
-            if(verificaArquivosOPENCV(pathClassificador,pathHaarcascadeFrontalFace) and verificaPastaArquivosFotos(pathArquivosFotos)):
+            
+            if(verificaArquivosOPENCV(pathClassificador,cv2.data.haarcascades + "haarcascade_frontalface_default.xml") and verificaPastaArquivosFotos(pathArquivosFotos)):
+                print("arquivos verificados")
                 statusClassificadores,classificadorFaces,identificadorFaces = criaClassificadoresOpenCV(pathClassificador,pathHaarcascadeFrontalFace)
                 if(statusClassificadores):
                     statusCamera, camera= instanciaCamera(enderecoCamera)
+    while(1):
+        henrique = "LINDO"
+        if henrique == "LINDO":
+            a=0
+        else:
+            a=10
+        
