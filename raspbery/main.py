@@ -1,12 +1,13 @@
 #!/usr/local/bin/python
 # -*- coding: UTF-8 -*-
-from time import time
+import BancoDados
 from pymongo import MongoClient
 from datetime import datetime
 import cv2
 import os
-import time
+
 id= 1
+DBconection= BancoDados("henriquegf12","jgs3er4b","192.168.15.10","27017")
 client = MongoClient("mongodb://henriquegf12:jgs3er4b@192.168.15.10:27017")
 
 
@@ -17,12 +18,13 @@ def escreveLogDB(tipo,desc,db):
             }
     log = db.log_app_raspberry
     log.insert_one(doc)
+
 def criaClassificadoresOpenCV(pathHaarcascadeFrontalFace,pathClassificador):
     try:
         classificadorFaces = cv2.CascadeClassifier(pathHaarcascadeFrontalFace)
         identificadorFaces = cv2.face.EigenFaceRecognizer_create()
         identificadorFaces.read(pathClassificador)
-        escreveLogDB("INI","Classificadores do OpenCV setados OK [5//6]",db)
+        DBconection.escreveLogDB("INI","Classificadores do OpenCV setados OK [5//6]",db)
         return True, classificadorFaces,identificadorFaces
     except:
         escreveLogDB("ERROR","Erro na criação dos classificadores OpenCV",db)
