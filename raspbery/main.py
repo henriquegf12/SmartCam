@@ -87,6 +87,8 @@ def encerraSistema():
 def instanciaIO():
     
     return True,True,True
+
+
 #MAIN
 if __name__ == "__main__":
     print("Iniciando o Sistema")
@@ -119,7 +121,7 @@ if __name__ == "__main__":
     
     if(statusClassificadores):
         print("Classificadores Setados")
-        statusCamera, camera= instanciaCamera(enderecoCamera)
+        statusCamera, camera = instanciaCamera(enderecoCamera)
     else:
         encerraSistema()
     
@@ -131,11 +133,13 @@ if __name__ == "__main__":
     
     if(statusConexaoBD and statusConfig and statusArquivosOPENCV and statusPastaImagens and statusClassificadores and statusCamera and statusIO):
         while(1):
-            henrique = "LINDO"
-            if henrique == "LINDO":
-                a=0
-            else:
-                a=10
+            img = camera.read()
+            imgCinza = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            facesDetectadas = classificadorFaces.detectMultiScale(imgCinza,scaleFactor=1.5,minSize=(30,30)) 
+            for (x,y,l,a) in facesDetectadas:
+                imagemFace = cv2.resize(imgCinza[y:y+a,x:x+1],(largura,altura))
+                id, confianca = identificadorFaces.predict(imagemFace)
+                
     else:
         encerraSistema()
 
